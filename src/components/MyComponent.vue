@@ -9,7 +9,7 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import { items } from "../const";
+import { contstants } from "../contstants";
 
 export default {
   data: function() {
@@ -18,7 +18,7 @@ export default {
     };
   },
   created: function() {
-    this.payload = items; //set constants
+    this.payload = contstants;
   },
   computed: {
     ...mapGetters(["getState"])
