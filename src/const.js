@@ -1,5 +1,5 @@
 export const items = {
   store: "myStore",
-  key: "myMessage",
+  key: "myKey",
   value: null
 };
