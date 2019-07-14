@@ -1,10 +1,5 @@
 # vuex-input
 
-Demo: https://robertshanefoster.github.io/vuex-input-prod/index.html
-Simple yarn add vue-forage vuexuex example saving state from text input. Refresh browser and input remains. Keywords: IndexedDB, localforage, vue-forage
-I'm a newbie but was disappointed that I could not find a simple example to save state using Vuex from a text box. Hope this helps others.
-Remember, it is not safe to store sensitive information on the client because others can see it!
-
 ## Project setup
 
 ```
