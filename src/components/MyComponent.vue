@@ -1,24 +1,37 @@
 <template>
   <div>
     <div>
-      <input type="text" :value="getMessage" @input="setMessage($event.target.value)" />
+      <input type="text" :value="getState" @input="callSetState($event.target.value)" />
     </div>
-    <div>{{ getMessage }}</div>
+    <div>{{ getState }}</div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
+import { items } from "../const";
 
 export default {
+  data: function() {
+    return {
+      payload: null
+    };
+  },
+  created: function() {
+    this.payload = items; //set constants
+  },
   computed: {
-    ...mapGetters(["getMessage"])
+    ...mapGetters(["getState"])
   },
   methods: {
-    ...mapActions(["setMessage", "setMessageFromStorage"])
+    ...mapActions(["setState", "setStateFromStorage"]),
+    callSetState(newValue) {
+      this.payload.value = newValue;
+      this.setState(this.payload);
+    }
   },
   mounted: function() {
-    this.setMessageFromStorage();
+    this.setStateFromStorage(this.payload);
   }
 };
 </script>

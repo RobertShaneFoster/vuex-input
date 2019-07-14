@@ -5,32 +5,33 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    myMessage: ""
+    name: ""
   },
   getters: {
-    getMessage: state => {
-      return state.myMessage;
+    getState: state => {
+      return state.name;
     }
   },
   mutations: {
-    updateMessage: (state, payload) => {
-      state.myMessage = payload;
+    updateState: (state, payload) => {
+      state.name = payload;
     },
-    updateMessageStorage: (state, payload) => {
-      state.myMessage = payload;
-      $vf.createInstance({ storeName: "myStore" }).then(store => {
-        store.setItem("myMessage", state.myMessage);
+    updateStateStorage: (state, payload) => {
+      state.name = payload.value;
+      $vf.createInstance({ storeName: payload.store }).then(store => {
+        store.setItem(payload.key, state.name);
       });
     }
   },
   actions: {
-    setMessage: (context, payload) => {
-      context.commit("updateMessageStorage", payload);
+    setState: (context, payload) => {
+      context.commit("updateStateStorage", payload);
     },
-    setMessageFromStorage: ({ commit }) => {
-      $vf.createInstance({ storeName: "myStore" }).then(store => {
-        store.getItem("myMessage").then(result => {
-          commit("updateMessage", result);
+    setStateFromStorage: ({ commit }, payload) => {
+      commit("updateState", payload);
+      $vf.createInstance({ storeName: payload.store }).then(store => {
+        store.getItem(payload.key).then(result => {
+          commit("updateState", result);
         });
       });
     }
